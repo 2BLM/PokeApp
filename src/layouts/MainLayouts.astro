@@ -4,14 +4,14 @@ import { siteInfo } from '@siteui/site-info'
 
 interface Props {
   title: string
-	_image?: string
+	image?: string
 	description?: string
 }
 
 const { 
 	title = siteInfo.title,
 	description = siteInfo.description,
-	_image
+	image
 } = Astro.props
 ---
 
@@ -29,7 +29,7 @@ const {
 		<!-- OG Meta tags -->
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
-		<meta property="og:image" content={_image} />
+		<meta property="og:image" content={image} />
 
 		<!-- Required -->
 		<title>{title}</title>
