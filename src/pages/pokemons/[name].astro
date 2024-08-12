@@ -3,6 +3,8 @@ import type { GetStaticPaths } from "astro";
 import type { PokemonListResponse } from '../../interfaces/pokemon-list';
 import MainLayouts from '@layouts/MainLayouts.astro';
 import PokemonCard from '../../components/pokemon/PokemonCard.astro';
+import Title from '@components/shared/Title.astro';
+import { Icon } from 'astro-icon/components'
 
 export const getStaticPaths = (async () => {
   const resp = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151');
@@ -30,10 +32,23 @@ const src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/po
   image={src}
 >
   <section class="mt-10 mx-10 flex flex-col justify-center items-center">
-    <div>
-      <a href="/">Regresar</a>
-      <h1 class="text-3xl"> {name} </h1>
+
+    <div class="flex flex-row">
+      <div>
+        <button 
+          class="text-blue-500"
+          onclick="history.back()"
+        >
+          Regresar
+        </button>
+        <Title>{name}</Title>
+      </div>
+      <button id="btn-fav" class="ml-4" data-name={name} data-id={id}>
+        <Icon data-empty name='heart-empty' size={ 50 } />
+        <Icon data-full class='hidden' name='heart-full' size={ 50 } />
+      </button>
     </div>
+
     <PokemonCard 
       name={name} 
       url={url}
@@ -45,10 +60,68 @@ const src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/po
       No soportado
     </audio>
   </section>
-</MainLayouts> 
+</MainLayouts>
+
+<script>
+  import type { FavPokemons } from '@interfaces/fav-pokemons.ts'
+  // interface FavPokemon {
+  //   name: string;
+  //   id: number;
+  // }
+
+  const handlePageLoad = () => {
+    let favoritePokemons: FavPokemons[] = JSON.parse(
+      localStorage.getItem('favs') ?? '[]'
+    )
+
+    const btnFav = document.querySelector('#btn-fav') as HTMLButtonElement;
+    if (!btnFav) return;
+
+    const name = btnFav.dataset.name ?? '';
+    const id = btnFav.dataset.id ?? '';
+    const pokemon = favoritePokemons.some(fav => fav.name === name);
+
+    const heartEmpty = btnFav.querySelector('[data-empty]') as HTMLElement;
+    const heartFull = btnFav.querySelector('[data-full]') as HTMLElement;
+
+    const toggleFavorite = () => {
+      const isFav = favoritePokemons.some(fav => fav.name === name);
+
+      if (isFav) {
+        favoritePokemons = favoritePokemons.filter(fav => fav.name !== name);
+      } else {
+        favoritePokemons.push({ id: +id, name })
+      }
+
+      localStorage.setItem('favs', JSON.stringify(favoritePokemons))
+    }
+
+    const verifyFavs = () => {
+      if (!pokemon) return;
+
+      heartEmpty.classList.toggle('hidden');
+      heartFull.classList.toggle('hidden');
+    }
+
+    btnFav.addEventListener('click', () => {
+      heartEmpty.classList.toggle('hidden');
+      heartFull.classList.toggle('hidden');
+
+      toggleFavorite()
+    })
+
+    verifyFavs()
+  }
+
+  document.addEventListener('astro:page-load', handlePageLoad)
+</script>
 
 <style>
   a {
     @apply hover:underline text-blue-500;
+  }
+
+  #btn-fav {
+    @apply hover:animate-pulse;
   }
 </style>

@@ -1,0 +1,94 @@
+{
+  "files.autoSave": "onWindowChange",
+  "terminal.integrated.env.osx": {},
+  "terminal.external.osxExec": "path/to/warp",
+  "terminal.explorerKind": "external",
+  "editor.tokenColorCustomizations": {
+      "textMateRules": [
+          {
+              "scope": [
+                  "entity.name.function",
+                  "entity.name.function.js",
+              ],
+              "settings": {
+                  "foreground": "#27d1fc" // Cambia el color según tu preferencia
+              }
+          },
+          {
+              "scope": [
+                  "variable.other.constant",
+              ],
+              "settings": {
+                  "foreground": "#d380f1" // Puedes ajustar este color según tu preferencia
+              }
+          },
+          {
+              "scope": [
+                  "string",
+                  "string.quoted",
+                  "source.css",
+                  "source.scss",
+                  "source.less"
+              ],
+              "settings": {
+                  "foreground": "#27d1fc"  // Cambia este valor al color que desees
+              }
+          },
+          {
+              "scope": [
+                  "support.class.component.tsx"
+              ],
+              "settings": {
+                  "foreground": "#27d1fc" // Cambia este valor al color que desees
+              }
+          }
+      ]
+      
+  },
+  "workbench.iconTheme": "symbols",
+  "[typescriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.fontLigatures": false,
+  "editor.minimap.enabled": false,
+  "editor.fontFamily": "Monaspace Neon",
+  "editor.fontSize": 16,
+  "editor.lineHeight": 28,
+  "terminal.integrated.fontFamily": "Monaspace Neon",
+  "workbench.colorCustomizations": {
+      "gitDecoration.untrackedResourceForeground": "#60f960",
+      "gitDecoration.addedResourceForeground": "#00FF00", // Cambia el color de los archivos añadidos.
+      "gitDecoration.modifiedResourceForeground": "#FFA500", // Cambia el color de los archivos modificados.
+      "gitDecoration.deletedResourceForeground": "#FF0000" // Cambia el color de los archivos eliminados.
+  },
+  "rapidapi.terminalLink.enabled": true,
+  "console-ninja.featureSet": "Community",
+  "workbench.activityBar.location": "hidden",
+  "editor.tabSize": 2,
+  "symbols.hidesExplorerArrows": false,
+  "workbench.productIconTheme": "fluent-icons",
+  "workbench.sideBar.location": "right",
+  "editor.scrollbar.vertical": "hidden",
+  "editor.overviewRulerBorder": false,
+  "editor.hideCursorInOverviewRuler": true,
+  "editor.guides.indentation": false,
+  "indenticator.width": 0.1,
+  "indenticator.color.dark": "rgba(255,255,255,0.1)",
+  "editor.matchBrackets": "never",
+  "prettier.singleQuote": true,
+  "prettier.semi": false,
+  "javascript.preferences.quoteStyle": "single",
+  "typescript.preferences.quoteStyle": "single",
+  "github.copilot.editor.enableAutoCompletions": true,
+  "prisma.showPrismaDataPlatformNotification": false,
+  "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "workbench.colorTheme": "Catppuccin Mocha"
+}

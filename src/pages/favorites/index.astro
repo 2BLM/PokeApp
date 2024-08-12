@@ -1,0 +1,14 @@
+---
+import { Counter } from '@components/Counter';
+import Title from '@components/shared/Title.astro';
+import MainLayouts from '@layouts/MainLayouts.astro';
+import { FavPokemonsList } from '@components/pokemon/FavPokemons'
+---
+
+<MainLayouts title='Favoritos'>
+  <Title>
+		Favoritos
+	</Title>
+
+  <FavPokemonsList client:only="solid-js" />
+</MainLayouts>
